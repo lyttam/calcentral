@@ -9,8 +9,8 @@
 * [Bundler](http://gembundler.com/rails3.html)
 * [Git](https://help.github.com/articles/set-up-git)
 * [JDBC Oracle driver](http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html)
-* [Java 7 SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [JRuby 1.7.19](http://jruby.org/)
+* [Java 8 SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JRuby 9.1.5.0](http://jruby.org/)
 * [Node.js >=0.10.30](http://nodejs.org/)
 * [PostgreSQL](http://www.postgresql.org/)
 * [Rails 3.2.x](http://rubyonrails.org/download)
@@ -20,7 +20,7 @@
 
 ## Installation
 
-1. Install Java 7 JDK:
+1. Install Java 8 JDK:
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 1. Install Postgres:
@@ -114,7 +114,7 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html
 1. Download the appropriate gems with [Bundler](http://gembundler.com/rails3.html):
 
     ```bash
-    gem install bundler
+    gem install bundler -v "1.11.2"
     bundle install
     ```
 
@@ -130,10 +130,10 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html
     You can also create Ruby configuration files like "settings.local.rb" and "development.local.rb" to amend the standard `config/environments/*.rb` files.
 
 1. Install JDBC driver (for Oracle connection)
-  * Download [ojdbc6.jar](http://svn.media.berkeley.edu/nexus/content/repositories/myberkeley/com/oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar) [Alternative download](http://www.oracle.com/technetwork/apps-tech/jdbc-112010-090769.html)
+  * Download [ojdbc7_g.jar](http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html)
   * Note: You do not have to open the file.
-  * Rename the file to `ojdbc6.jar`
-  * Copy `ojdbc6.jar` to `calcentral/lib`
+  * Rename the file to `ojdbc7.jar`
+  * Copy `ojdbc7.jar` to `~/.rvm/rubies/jruby-1.7.19/lib/`
 
 1. Initialize PostgreSQL database tables:
 
@@ -151,6 +151,7 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html
 1. Install the front-end tools:
 
     ```bash
+    brew install node
     npm install
     npm install -g gulp
     ```
@@ -171,21 +172,6 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html
 Do not use 127.0.0.1:3000, as you will not be able to grant access to bApps.
 
 **Note**: Usually you won't have to do any of the following steps when you're developing on CalCentral.
-
-## Enable live updates
-
-In order to have live updates you'll need to perform the following steps:
-
-1. Install and run [memcached](http://memcached.org/).
-
-1. Add the following lines to development.local.yml:
-
-  ```yml
-  cache:
-    store: "memcached"
-  ```
-
-1. Start the server with TorqueBox (see below).
 
 ## Back-end Testing
 
@@ -400,6 +386,21 @@ To view other rake task for the project: `rake -T`
 
 * `rake spec:xml` - Runs rake spec, but pipes the output to xml using the `rspec_junit_formatter` gem, for JUnit compatible test result reports
 
+## Installing Memcached:
+
+Dev, QA, and Production CalCentral environments use memcached as a cache store in place of the default ActiveSupport cache store.
+
+To set this up locally, perform the following steps:
+
+1. Install and run [memcached](http://memcached.org/).
+
+1. Add the following lines to development.local.yml:
+
+```yml
+cache: 
+  store: "memcached"
+```
+
 ## Memcached tasks:
 
 A few rake tasks to help monitor statistics and more:
@@ -438,7 +439,7 @@ update it from production. To do that, log into a prod node and do:
 ```bash
 pg_dump calcentral -O -x --inserts --clean -f developer-seed-data.sql -t link_categories \
 -t link_categories_link_sections -t link_sections -t link_sections_links -t links \
--t links_user_roles -t user_auths -t user_roles -t fin_aid_years -t summer_sub_terms \
+-t links_user_roles -t user_auths -t user_roles -t fin_aid_years \
 -h postgres-hostname -p postgres-port-number -U calcentral
 ```
 
