@@ -108,6 +108,7 @@ Calcentral::Application.routes.draw do
     get '/api/my/committees' => 'my_committees#get_feed', :defaults => { :format => 'json' }
     get '/api/my/committees/photo/member/:member_id' => 'my_committees#member_photo', :defaults => { :format => 'jpeg' }
     get '/api/my/committees/photo/student/:student_id' => 'my_committees#student_photo', :defaults => { :format => 'jpeg' }
+    get '/api/my/profile' => 'my_profile#get_feed', :defaults => { :format => 'json' }
 
     # Google API writing endpoints
     post '/api/my/event' => 'my_events#create', defaults: { format: 'json' }
@@ -145,7 +146,6 @@ Calcentral::Application.routes.draw do
 
     # Campus Solutions general purpose endpoints
     get '/api/campus_solutions/address_label' => 'campus_solutions/address_label#get', :defaults => { :format => 'json' }
-    get '/api/campus_solutions/address_type' => 'campus_solutions/address_type#get', :defaults => { :format => 'json' }
     get '/api/campus_solutions/advising_resources' => 'campus_solutions/advising_resources#get', :defaults => { :format => 'json' }
     get '/api/campus_solutions/aid_years' => 'campus_solutions/aid_years#get', :defaults => { :format => 'json' }
     get '/api/campus_solutions/billing' => 'campus_solutions/billing#get', :defaults => { :format => 'json' }
@@ -172,26 +172,20 @@ Calcentral::Application.routes.draw do
     get '/api/campus_solutions/state' => 'campus_solutions/state#get', :defaults => { :format => 'json' }
     get '/api/campus_solutions/student_resources' => 'campus_solutions/student_resources#get', :defaults => { :format => 'json' }
     get '/api/campus_solutions/translate' => 'campus_solutions/translate#get', :defaults => { :format => 'json' }
-    post '/api/campus_solutions/address' => 'campus_solutions/address#post', :defaults => { :format => 'json' }
-    post '/api/campus_solutions/email' => 'campus_solutions/email#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/emergency_contact' => 'campus_solutions/emergency_contact#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/emergency_phone' => 'campus_solutions/emergency_phone#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/ethnicity' => 'campus_solutions/ethnicity#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/language' => 'campus_solutions/language#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/person_name' => 'campus_solutions/person_name#post', :defaults => { :format => 'json' }
-    post '/api/campus_solutions/phone' => 'campus_solutions/phone#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/sir_response' => 'campus_solutions/sir_response#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/terms_and_conditions' => 'campus_solutions/terms_and_conditions#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/title4' => 'campus_solutions/title4#post', :defaults => { :format => 'json' }
     post '/api/campus_solutions/work_experience' => 'campus_solutions/work_experience#post', :defaults => { :format => 'json' }
-    delete '/api/campus_solutions/address/:type' => 'campus_solutions/address#delete', :defaults => { :format => 'json' }
-    delete '/api/campus_solutions/email/:type' => 'campus_solutions/email#delete', :defaults => { :format => 'json' }
     delete '/api/campus_solutions/emergency_contact/:contactName' => 'campus_solutions/emergency_contact#delete', :defaults => { :format => 'json' }
     delete '/api/campus_solutions/emergency_phone/:contactName/:phoneType' => 'campus_solutions/emergency_phone#delete', :defaults => { :format => 'json' }
     delete '/api/campus_solutions/ethnicity/:ethnicGroupCode/:regRegion' => 'campus_solutions/ethnicity#delete', :defaults => { :format => 'json' }
     delete '/api/campus_solutions/language/:languageCode' => 'campus_solutions/language#delete', :defaults => { :format => 'json' }
     delete '/api/campus_solutions/person_name/:type' => 'campus_solutions/person_name#delete', :defaults => { :format => 'json' }
-    delete '/api/campus_solutions/phone/:type' => 'campus_solutions/phone#delete', :defaults => { :format => 'json' }
     delete '/api/campus_solutions/work_experience/:sequenceNbr' => 'campus_solutions/work_experience#delete', :defaults => { :format => 'json' }
 
     # Redirect to College Scheduler
@@ -206,7 +200,6 @@ Calcentral::Application.routes.draw do
 
     # EDOs from integration hub
     get '/api/edos/academic_status' => 'hub_edo#academic_status', :defaults => { :format => 'json' }
-    get '/api/edos/student' => 'hub_edo#student', :defaults => { :format => 'json' }
     get '/api/edos/work_experience' => 'hub_edo#work_experience', :defaults => { :format => 'json' }
   end
 
