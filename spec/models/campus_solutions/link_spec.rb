@@ -27,7 +27,7 @@ describe CampusSolutions::Link do
       it_should_behave_like 'a proxy that gets data'
       it 'returns data with the expected structure' do
         expect(link_set_response[:feed][:ucLinkResources][:isFault]).to eq "Y"
-        expect(link_set_response[:feed][:ucLinkResources][:links]).not_to be
+        expect(link_set_response[:feed][:ucLinkResources][:links]).to be_empty
         expect(link_set_response[:feed][:ucLinkResources][:status][:details][:msgs][:msg][:messageSeverity]).to eq "E"
       end
       it 'returns a parsed response with the expected structure' do

@@ -18,11 +18,17 @@ module CampusSolutions
     def normalize_response(response)
       # Make sure response is well-structured.
       container = response.parsed_response
-      return container if container['UC_LINK_RESOURCES'].blank? || container['UC_LINK_RESOURCES']['IS_FAULT'].present?
+      if container['UC_LINK_RESOURCES'].blank?
+        logger.warn 'Empty response from CS Link API'
+        return container
+      end
+      if container['UC_LINK_RESOURCES']['IS_FAULT'].present?
+        logger.warn 'Error in response from CS Link API'
+      end
 
       # Lift any Link elements into a single Links element hash on UC_LINK_RESOURCES.
-      links = Array.wrap container['UC_LINK_RESOURCES'].delete('Link')
-      container['UC_LINK_RESOURCES']['Links'] = links.inject({}) do |map, link|
+      links = Array.wrap container['UC_LINK_RESOURCES'].try(:delete, 'Link')
+      container['UC_LINK_RESOURCES']['Links'] = links.try(:inject, {}) do |map, link|
         map[link['URL_ID']] = link
         map
       end
