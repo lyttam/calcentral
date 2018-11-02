@@ -9,10 +9,6 @@ TorqueBox.configure do
   # Increasing concurrency keeps a single slow job from blocking on all other apps.
   options_for Backgroundable, :concurrency => 3
 
-  # process incoming JMS messages from activeMQ
-  # CALCENTRAL-ONLY
-  service JmsWorker
-
   # Check the health of the background-job processor and the cache.
   service BackgroundJobsCheck
   topic '/topics/background_jobs_check' do
