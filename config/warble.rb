@@ -112,7 +112,7 @@ Warbler::Config.new do |config|
   # config.executable = ["rake", "bin/rake"]
 
   # Sets default (prefixed) parameters for the executables
-  # config.executable_params = "do:something"
+  config.executable_params = "bundle exec"
 
   # If set to true, moves jar files into WEB-INF/lib. Prior to version 1.4.2 of Warbler this was done
   # by default. But since 1.4.2 this config defaults to false. It may need to be set to true for

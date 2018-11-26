@@ -14,5 +14,5 @@ export JRUBY_OPTS="--dev"
 echo "------------------------------------------"
 echo "`date`: Redeploying CalCentral on app nodes..."
 
-echo "`date`: cap calcentral_dev:update..."
-cap -l STDOUT calcentral_dev:update || { echo "ERROR: capistrano deploy failed" ; exit 1 ; }
+# echo "`date`: cap calcentral_dev:update..."
+# cap -l STDOUT calcentral_dev:update || { echo "ERROR: capistrano deploy failed" ; exit 1 ; }
