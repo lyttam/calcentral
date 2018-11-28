@@ -109,7 +109,7 @@ Warbler::Config.new do |config|
   # config.override_gem_home = true
 
   # Allows for specifing custom executables
-  # config.executable = ["rake", "bin/rake"]
+  config.executable = ["rake", "bin/rake"]
 
   # Sets default (prefixed) parameters for the executables
   config.executable_params = "bundle exec"
