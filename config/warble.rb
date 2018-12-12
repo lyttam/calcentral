@@ -12,7 +12,7 @@ Warbler::Config.new do |config|
   # config.features = %w(gemjar)
 
   # Application directories to be included in the webapp.
-  config.dirs = %w(app config db lib log public script vendor versions tmp)
+  config.dirs = %w(app bin config db lib public script vendor versions tmp)
 
   # Additional files/directories to include, above those in config.dirs
   # config.includes = FileList["db"]
@@ -109,10 +109,12 @@ Warbler::Config.new do |config|
   # config.override_gem_home = true
 
   # Allows for specifing custom executables
-  config.executable = ["rake", "bin/rake"]
+ # config.executable = ["rake", "~/.rvm/gems/jruby-9.1.14.0@global/bin/rake"]
+ config.executable = ["rake", "/WEB-INF/bin"]
 
   # Sets default (prefixed) parameters for the executables
-  config.executable_params = "bundle exec"
+ config.executable_params = "bundle exec"
+ config.init_contents << StringIO.new("\nGem.clear_paths\nGem.path\n\n")
 
   # If set to true, moves jar files into WEB-INF/lib. Prior to version 1.4.2 of Warbler this was done
   # by default. But since 1.4.2 this config defaults to false. It may need to be set to true for
@@ -132,7 +134,7 @@ Warbler::Config.new do |config|
   # Path to the pre-bundled gem directory inside the war file. Default
   # is 'WEB-INF/gems'. Specify path if gems are already bundled
   # before running Warbler. This also sets 'gem.path' inside web.xml.
-  # config.gem_path = "WEB-INF/vendor/bundler_gems"
+  # config.gem_path = "WEB-INF/gems"
 
   # Files for WEB-INF directory (next to web.xml). This contains
   # web.xml by default. If there is an .erb-File it will be processed
