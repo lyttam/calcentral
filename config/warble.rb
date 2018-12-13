@@ -12,7 +12,7 @@ Warbler::Config.new do |config|
   # config.features = %w(gemjar)
 
   # Application directories to be included in the webapp.
-  config.dirs = %w(app bin config db lib public script vendor versions tmp)
+  config.dirs = %w(app bin config db lib log public script vendor versions tmp)
 
   # Additional files/directories to include, above those in config.dirs
   # config.includes = FileList["db"]
@@ -52,6 +52,7 @@ Warbler::Config.new do |config|
   # unless the vendor/rails directory is present.
   # config.gems += ["activerecord-jdbcmysql-adapter", "jruby-openssl"]
   # config.gems << "tzinfo"
+  # config.gems << "json"
 
   # Uncomment this if you don't want to package rails gem.
   # config.gems -= ["rails"]
@@ -122,7 +123,7 @@ Warbler::Config.new do |config|
   # Alternatively, this option can be set to a regular expression, which will
   # act as a jar selector -- only jar files that match the pattern will be
   # included in the archive.
-  # config.move_jars_to_webinf_lib = false
+  # config.move_jars_to_webinf_lib = true
 
   # === War files only below here ===
 
