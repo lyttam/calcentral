@@ -115,7 +115,7 @@ Warbler::Config.new do |config|
 
   # Sets default (prefixed) parameters for the executables
  config.executable_params = "bundle exec"
- config.init_contents << StringIO.new("\nGem.clear_paths\nGem.path\n\n")
+ config.init_contents << StringIO.new("\nGem.clear_paths\nGem.path\nGem.paths = ENV\n\n")
 
   # If set to true, moves jar files into WEB-INF/lib. Prior to version 1.4.2 of Warbler this was done
   # by default. But since 1.4.2 this config defaults to false. It may need to be set to true for
