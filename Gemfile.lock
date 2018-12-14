@@ -250,7 +250,7 @@ GEM
     jruby-jars (9.2.0.0)
     jruby-openssl (0.9.19-java)
     jruby-rack (1.1.21)
-    json (1.8.2)
+    json (1.8.2-java)
     jwt (1.5.4)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
@@ -546,6 +546,7 @@ DEPENDENCIES
   ims-lti!
   jmx (~> 1.0)
   jruby-activemq (~> 5.13.0)!
+  jruby-jars (= 9.2.0.0)
   jruby-openssl (= 0.9.19)
   json (~> 1.8.0)
   link_header (~> 0.0.7)
@@ -589,4 +590,4 @@ DEPENDENCIES
   webmock (~> 1.20.4)
 
 BUNDLED WITH
-   1.16.1
+   1.16.6
