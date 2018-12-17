@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.8'
 
 gem 'jruby-jars', '9.2.0.0'
+gem 'rake', '10.4.2'
 
 gem 'actionpack-action_caching', '~>1.1.1'
 gem 'actionpack-page_caching', '~>1.0.2'
